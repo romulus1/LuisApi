@@ -10,6 +10,21 @@ define('client_secret', '976c493b03464f358c136a20015503d5');
 define('redirectURI', 'http://localhost/LuisApi/index.php');
 define('ImageDirectory', 'pics/');
 
+//function that is going to connect to Instagram
+function connectionToInstagram($url){
+    $ch = curl_init();
+
+    curl_setopt_array($ch, array{
+        CURLOPT_URL => $url;
+        CURLOPT_RETURNTRANSFER => true;
+        CURLOPT_SSL_VERIFYPEER => false;
+        CURLOPT_SSL_VERIFYHOST => 2;
+    });
+    $result = curl_exec($ch);
+    curl_close($ch);
+    return $result;
+}
+
 
 if (isset($_GET['code'])){
   $code = ($_GET['code']);
